@@ -1,5 +1,6 @@
 pipeline {
     agent { any }
+	
     tools {
         jdk 'Java17'
         maven 'Maven3'
@@ -7,11 +8,11 @@ pipeline {
     environment {
 	    APP_NAME = "register-app-pipeline"
             RELEASE = "1.0.0"
-            DOCKER_USER = "ashfaque9x"
-            DOCKER_PASS = 'dockerhub'
+            DOCKER_USER = "prajnashetty529"
+            DOCKER_PASS = 'dckr_pat_stE2kIRzItpGYsn_KhVWNbjqLjg'
             IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
             IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
-	    JENKINS_API_TOKEN = credentials("JENKINS_API_TOKEN")
+	    JENKINS_API_TOKEN = "11bac6e646775b4a53d219fd04b4a95c0d"
     }
     stages{
         stage("Cleanup Workspace"){
