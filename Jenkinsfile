@@ -40,15 +40,18 @@ pipeline {
            }
        }
 
-       stage("SonarQube Analysis"){
-           steps {
-	           script {
-		        withSonarQubeEnv(credentialsId: 'jenkins-sonarqube-token') { 
-                        sh "mvn sonar:sonar"
+       stage("SonarQube Analysis") {
+		   steps {
+		        script {
+		            sh '''
+		                mvn sonar:sonar \
+		                -Dsonar.projectKey=Register-App \
+		                -Dsonar.host.url=http://20.55.91.91:9000 \
+		                -Dsonar.login=sqa_715d546d39bf07acbfeade31eacb5422d734ee81
+		            '''
 		        }
-	           }	
-           }
-       }
+		    }
+	   }
 
        stage("Quality Gate"){
            steps {
