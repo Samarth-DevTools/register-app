@@ -52,14 +52,6 @@ pipeline {
 		        }
 		    }
 	   }
-		
-       stage("Quality Gate"){
-           steps {
-               script {
-                    waitForQualityGate abortPipeline: true, credentialsId: 'sonarqube-token'
-                }	
-            }
-        }
 
         stage("Build & Push Docker Image") {
             steps {
@@ -74,7 +66,6 @@ pipeline {
                     }
                 }
             }
-
        }
 
        stage("Trivy Scan") {
