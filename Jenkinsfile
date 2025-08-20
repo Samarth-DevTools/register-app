@@ -42,21 +42,18 @@ pipeline {
 
        stage("SonarQube Analysis") {
 		   steps {
-		        script {
-		            sh '''
-		                mvn sonar:sonar \
-		                -Dsonar.projectKey=Register-App \
-		                -Dsonar.host.url=http://20.55.91.91:9000 \
-		                -Dsonar.login=sqa_715d546d39bf07acbfeade31eacb5422d734ee81
-		            '''
-		        }
-		    }
+			   script {
+				   withSonarQubeEnv('MySonar') {
+	               sh "mvn clean verify sonar:sonar -Dsonar.projectKey=Register-App"
+	               }
+			   }
+		   }
 	   }
-
+		
        stage("Quality Gate"){
            steps {
                script {
-                    waitForQualityGate abortPipeline: false, credentialsId: 'sonarqube-token'
+                    waitForQualityGate abortPipeline: true, credentialsId: 'sonarqube-token'
                 }	
             }
         }
