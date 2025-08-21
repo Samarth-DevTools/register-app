@@ -1,7 +1,7 @@
 <form action="action_page.php">
   <div class="container">
-    <h1>New user Register for DevOps Learning at Virtual TechBox Youtube Channel</h1>
-    <p>Please fill in this form to create an account.</p>
+    <h1>Welcome to DevTools</h1>
+    <p>Please fill in this form to create an account. So that we can contact you for future enhancements</p>
     <hr>
      
     <label for="Name"><b>Enter Name</b></label>
@@ -31,8 +31,16 @@
     <p>Already have an account? <a href="#">Sign in</a>.</p>
   </div>
 
-   <h1> Thank You </h1>
-   <br>
-   <h1> Happy Learning. See You Again. </h1>
-   
+  <hr>
+  <div class="container">
+    <h2>About DevTools</h2>
+    <p><strong>DevTools</strong> is a modern DevOps service company that empowers businesses with tools like <strong>ServiceNow, DevRev, GitHub, JFrog, Jenkins, AWS, and Octopus Deploy</strong>.</p>
+    <p>We help teams streamline development, automate deployment, and accelerate digital transformation.</p>
+    <p><strong>Create your account below to get started.</strong></p>
+  </div>
+
+  <br>
+  <h2>Thank You</h2>
+  <br>
+  <h2>DevTools — Empowering Digital Transformation.</h2>
 </form>
