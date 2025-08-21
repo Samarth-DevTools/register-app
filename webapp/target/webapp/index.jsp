@@ -29,6 +29,12 @@
             margin-bottom: 20px;
         }
 
+        .logo {
+            max-width: 120px;
+            display: block;
+            margin: 0 auto 20px auto;
+        }
+
         input[type="text"],
         input[type="password"] {
             width: 100%;
@@ -86,11 +92,6 @@
         p {
             color: #555;
         }
-
-        .logo {
-            max-width: 120px;
-            margin-bottom: 10px;
-        }
     </style>
 </head>
 <body>
@@ -98,8 +99,10 @@
 <div class="wrapper">
     <form action="action_page.php">
         <div class="container">
-            <img src="https://devtools.in/wp-content/uploads/2022/12/Devtools-Logo-Dark.png" alt="DevTools Logo" class="logo">
-            <h1>Welcome to DevTools</h1>
+            <!-- Embedded Image -->
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_qLD3DqkyZ8i6x5Qs6DThOQG_w23dYdZe2w&s" 
+                 alt="DevTools Logo" class="logo">
+            <h1>DevTools</h1>
             <p>Please fill in this form to create an account so we can contact you for future enhancements.</p>
         </div>
 
@@ -118,13 +121,12 @@
 
         <label for="psw">Password</label>
         <input type="password" placeholder="Enter Password" name="psw" id="psw"
-               pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%])[A-Za-z\d!@#$%]{8,10}$"
-               title="8-10 characters. Must include letters, numbers, and at least one special character (!@#$%)"
+               pattern="^(?=.*[A-Za-z])(?=.*\\d)(?=.*[!@#$%])[A-Za-z\\d!@#$%]{8,10}$"
+               title="8‑10 characters. Must include letters, numbers, and at least one special character (!@#$%)"
                required>
 
         <label for="psw-repeat">Confirm Password</label>
-        <input type="password" placeholder="Confirm Password" name="psw-repeat" id="psw-repeat"
-               required>
+        <input type="password" placeholder="Confirm Password" name="psw-repeat" id="psw-repeat" required>
 
         <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
 
