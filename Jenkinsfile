@@ -26,10 +26,16 @@ pipeline {
             }
         }
 
-        stage("Build Application") {
+        stage('java version') {
             steps {
                 sh 'java -version'
-                sh 'mvn package'
+            }
+        }
+
+        stage("Build Application") {
+            steps {
+                sh 'mvn -v'
+                sh 'mvn clean package'
             }
         }
 
