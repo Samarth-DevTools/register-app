@@ -29,7 +29,7 @@ pipeline {
         stage("Build Application") {
             steps {
                 sh 'java -version'
-                sh "mvn clean package"
+                sh 'mvn package'
             }
         }
 
