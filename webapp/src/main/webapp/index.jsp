@@ -145,6 +145,45 @@
             <p><strong>Create your account above to get started.</strong></p>
         </div>
 
+
+        <div class="about">
+        <h2>Our Tools</h2>
+        <p>Click on a logo below to visit the official website:</p>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 20px;">
+            <!-- ServiceNow -->
+            <a href="https://www.servicenow.com/" target="_blank">
+                <img src="https://www.servicenow.com/content/dam/servicenow-assets/public/en-us/images/global/servicenow-logo.svg" alt="ServiceNow" style="height: 50px;">
+            </a>
+
+            <!-- DevRev -->
+            <a href="https://www.devrev.ai/" target="_blank">
+                <img src="https://assets-global.website-files.com/63976e08fc609131fe7b8f34/63976e08fc6091123e7b8f90_DevRev%20favicon%20(1).png" alt="DevRev" style="height: 50px;">
+            </a>
+
+            <!-- GitHub -->
+            <a href="https://github.com/" target="_blank">
+                <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub" style="height: 50px;">
+            </a>
+
+            <!-- JFrog -->
+            <a href="https://jfrog.com/" target="_blank">
+                <img src="https://jfrog.com/wp-content/uploads/2021/03/logo-jfrog.png" alt="JFrog" style="height: 50px;">
+            </a>
+
+            <!-- Jenkins -->
+            <a href="https://www.jenkins.io/" target="_blank">
+                <img src="https://www.jenkins.io/images/logos/jenkins/jenkins.svg" alt="Jenkins" style="height: 50px;">
+            </a>
+
+            <!-- AWS -->
+            <a href="https://aws.amazon.com/" target="_blank">
+                <img src="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" alt="AWS" style="height: 50px;">
+            </a>
+
+            <!-- Octopus Deploy -->
+            <a href="http
+
+
         <div class="container">
             <h2>Thank You</h2>
             <h2>DevTools — Empowering Digital Transformation.</h2>
