@@ -68,6 +68,37 @@ pipeline {
             }
         }
 
+
+        stage("Run Application for DAST") {
+            steps {
+                script {
+                    sh """
+                        docker run -d -p 8080:8080 --name test-app ${IMAGE_NAME}:${IMAGE_TAG}
+                        sleep 10  # give it time to start
+                    """
+                }
+            }
+        }
+
+        // DAST security scan using ZAP
+        stage("DAST - Security Scan") {
+            steps {
+                script {
+                    def target = "http://localhost:8080"
+                    sh """
+                        docker run -v /var/run/docker.sock:/var/run/docker.sock --network host \\
+                            owasp/zap2docker-stable zap-baseline.py -t ${target} -r zap-report.html
+                    """
+                }
+            }
+            post {
+                always {
+                    archiveArtifacts artifacts: 'zap-report.html', fingerprint: true
+                    sh "docker rm -f test-app || true"
+                }
+            }
+        }
+
         stage("Cleanup Artifacts") {
             steps {
                 script {
