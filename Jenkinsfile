@@ -44,6 +44,21 @@ pipeline {
             }
         }
 
+        stage('SonarCloud Scan') {
+            steps {
+                withCredentials([string(credentialsId: 'sonarcloud-token2', variable: 'SONAR_TOKEN')]) {
+                    sh """
+                        sonar-scanner \\
+                            -Dsonar.projectKey=varshitha-devtools_jenkins-pipeline \\
+                            -Dsonar.organization=varshitha-devtools \\
+                            -Dsonar.token=$SONAR_TOKEN \\
+                            -Dsonar.sources=. \\
+                            -Dsonar.host.url=https://sonarcloud.io
+                    """
+                }
+            }
+        }
+
         stage("Build & Push Docker Image") {
             steps {
                 script {
