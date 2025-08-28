@@ -96,8 +96,7 @@ pipeline {
             steps {
                 script {
                     sh """
-                        docker rm -f test-app || true
-                        docker run -d -p 8080:8080 --name test-app ${IMAGE_NAME}:${IMAGE_TAG}
+                        docker run -d -p 8081:8080 --name test-app ${IMAGE_NAME}:${IMAGE_TAG}
                         sleep 10  # give it time to start
                     """
                 }
@@ -109,12 +108,11 @@ pipeline {
             steps {
                 script {
                     sh """
-                        docker rm -f test-app || true
-                        docker run -d -p 8080:8080 --name test-app ${IMAGE_NAME}:${IMAGE_TAG}
+                        docker run -d -p 8081:8080 --name test-app ${IMAGE_NAME}:${IMAGE_TAG}
                         sleep 10
                         
                         # Run ZAP scan (example command)
-                        docker run --network="host" owasp/zap2docker-stable zap-baseline.py -t http://localhost:8080 -r zap-report.html
+                        docker run --network="host" owasp/zap2docker-stable zap-baseline.py -t http://localhost:8081 -r zap-report.html
                     """
                 }
             }
@@ -153,6 +151,33 @@ pipeline {
         //     }
         // }
     }
+
+    // stage('Deploy to EKS') {
+    //     steps {
+    //         withCredentials([
+    //             [$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-creds-id']
+    //         ]) {
+    //             script {
+    //                 try {
+    //                     // Validate cluster connection (optional but helpful)
+    //                     sh "kubectl --kubeconfig=${KUBECONFIG} get nodes"
+
+    //                     // Deploy application manifests
+    //                     sh """
+    //                         kubectl --kubeconfig=${KUBECONFIG} apply -f k8s/deployment.yaml
+    //                         kubectl --kubeconfig=${KUBECONFIG} apply -f k8s/service.yaml
+    //                     """
+
+    //                     // Optionally verify deployment status
+    //                     sh "kubectl --kubeconfig=${KUBECONFIG} rollout status deployment/tetris-app"
+    //                 } catch (err) {
+    //                     createGitHubIssue('Kubernetes Deploy Failed', err.toString())
+    //                     error("Failed to deploy to Kubernetes: ${err}")
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 
     post {
         failure {
