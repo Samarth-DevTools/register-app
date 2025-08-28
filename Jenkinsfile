@@ -11,6 +11,8 @@ pipeline {
         DOCKER_CREDENTIALS = credentials("dockerhub-creds")
         IMAGE_NAME = "${DOCKER_CREDENTIALS_USR}/${APP_NAME}"
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
+        SONAR_TOKEN = credentials('sonarcloud-token')
+        SONARQUBE_SERVER = 'SonarQube'
     }
 
     stages {
@@ -50,21 +52,18 @@ pipeline {
             }
         }
 
-        // stage("SonarCloud Scan") {
-        //     steps {
-        //         withCredentials([string(credentialsId: 'sonarcloud-token2', variable: 'SONAR_TOKEN')]) {
-        //             sh '''
-        //                 sonar-scanner \
-        //                     -Dsonar.projectKey=varshitha-devtools_jenkins-pipeline \
-        //                     -Dsonar.organization=varshitha-devtools \
-        //                     -Dsonar.token=${SONAR_TOKEN} \
-        //                     -Dsonar.sources=. \
-        //                     -Dsonar.java.binaries=target/classes \
-        //                     -Dsonar.host.url=https://sonarcloud.io
-        //             '''
-        //         }
-        //     }
-        // }test
+        steps {
+            withCredentials([string(credentialsId: 'sonarcloud-token', variable: 'SONAR_TOKEN')]) {
+                sh '''
+                sonar-scanner \
+                -Dsonar.projectKey=game-app_ga-1 \
+                -Dsonar.organization=game-app \
+                -Dsonar.token=$SONAR_TOKEN \
+                -Dsonar.sources=. \
+                -Dsonar.host.url=https://sonarcloud.io
+                '''
+            }
+        }
 
 
         stage("Build & Push Docker Image") {
