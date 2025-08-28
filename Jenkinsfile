@@ -34,17 +34,23 @@ pipeline {
 
         stage("Build Application") {
             steps {
-                sh "mvn clean package"
+                sh '''
+                    mvn clean
+                    mvn package
+                '''
             }
         }
 
-        stage("Check Compiled Classes") {
+        stage("Verify Compilation") {
             steps {
-                sh "ls -R target/classes || echo 'No compiled classes found'"
+                sh '''
+                    echo "Listing compiled class files in target/classes:"
+                    find target/classes -name "*.class" || echo "No .class files found!"
+                '''
             }
         }
 
-        stage('SonarCloud Scan') {
+        stage("SonarCloud Scan") {
             steps {
                 withCredentials([string(credentialsId: 'sonarcloud-token2', variable: 'SONAR_TOKEN')]) {
                     sh '''
@@ -59,6 +65,7 @@ pipeline {
                 }
             }
         }
+
 
         stage("Build & Push Docker Image") {
             steps {
