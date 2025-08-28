@@ -32,15 +32,15 @@ pipeline {
             }
         }
 
-        stage("Build Application"){
+        stage("Build Application") {
             steps {
-                sh "mvn clean compile"
+                sh "mvn clean package"
             }
-       }
+        }
 
-        stage("Testing Application") {
+        stage("Check Compiled Classes") {
             steps {
-                sh "mvn test"
+                sh "ls -R target/classes || echo 'No compiled classes found'"
             }
         }
 
@@ -59,7 +59,6 @@ pipeline {
                 }
             }
         }
-
 
         stage("Build & Push Docker Image") {
             steps {
