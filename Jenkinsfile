@@ -96,7 +96,7 @@ pipeline {
             steps {
                 script {
                     sh """
-                        docker run -d -p 8081:8080 --name test-app ${IMAGE_NAME}:${IMAGE_TAG}
+                        docker run -d -p 8082:8080 --name test-app ${IMAGE_NAME}:${IMAGE_TAG}
                         sleep 10  # give it time to start
                     """
                 }
@@ -108,11 +108,11 @@ pipeline {
             steps {
                 script {
                     sh """
-                        docker run -d -p 8081:8080 --name test-app ${IMAGE_NAME}:${IMAGE_TAG}
+                        docker run -d -p 8082:8080 --name test-app ${IMAGE_NAME}:${IMAGE_TAG}
                         sleep 10
                         
                         # Run ZAP scan (example command)
-                        docker run --network="host" owasp/zap2docker-stable zap-baseline.py -t http://localhost:8081 -r zap-report.html
+                        docker run --network="host" owasp/zap2docker-stable zap-baseline.py -t http://localhost:8082 -r zap-report.html
                     """
                 }
             }
